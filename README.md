@@ -1,6 +1,6 @@
 # shopping-website
 * it is a big project and still under develpment || the app runing in port 9000
-### the project include :
+### the project includes :
 * sample of product in the main or home page 
 * sign-up page to create your own account with your password ( the password encrypted bt the bcrypt library)
 * sign-in page
