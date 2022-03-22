@@ -1,0 +1,21 @@
+<div class="col-md-4 offset-md-4">
+
+<form action="sign_up" method="POST">
+     {{#each flashMassage}}
+    <div class='alert alert-danger'>
+        <p>{{this}}</p>
+    </div>
+    {{/each}}
+        <div class="form-group">
+            <label for="email">YOUR EMAIL</label>
+            <input type="email" placeholder="ENTER YOUR E-MAIL" class="form-control" name="email">
+        </div>
+        <div class="form-group">
+            <label for="password">YOUR password</label>
+            <input type="password" placeholder="ENTER YOUR PASSWORD" class="form-control" name="password">
+        </div>
+        <br>
+        <input type="hidden" name='_csrf' value="{{token}}">
+        <button class="btn btn-primary">SIGN IN</button>
+    </form>
+    </div>

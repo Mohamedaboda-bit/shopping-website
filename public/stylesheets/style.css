@@ -1,0 +1,16 @@
+.container{
+  padding-top: 20px;
+}
+.card-body img {
+  max-width: 200px;
+  max-height: 200px;
+}
+.btn-primary{
+  float: right;
+}
+label{
+  padding: 5px;
+}
+.btn-primary{
+  float: left;
+}

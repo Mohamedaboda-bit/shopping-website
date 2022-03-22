@@ -1,0 +1,42 @@
+
+<table class="table caption-top text-center">
+  <caption class=" text-center"><h3> your cart </h3></caption>
+  <thead>
+    <tr>
+      <th scope="col">number</th>
+      <th scope="col">name</th>
+      <th scope="col">quantity</th>
+      <th scope="col">price</th>
+    </tr>
+  </thead>
+  <tbody>
+      {{#each shopCart.selcetedProdects as |val index |}}
+      <tr>
+      <th scope="row">{{add @index}}</th>
+      <td>{{val.name}}</td>
+      <td>
+        
+        {{#if (minus @val.Quantity)}}
+        <a class="btn disabled" style="float:left" href="#"> <i class="fa-solid fa-minus"></i> </a>
+        {{else}}
+         <a class="btn " style="float:left" href="/decrease/{{index}}"> <i class="fa-solid fa-minus"></i> </a>
+        {{/if}}
+
+        {{val.Quantity}}
+
+         <a class="btn" href="/increase/{{index}}" style="float:right"> <i class="fa-solid fa-plus"></i> </a>
+
+      </td>
+      <td>{{val.prize}} $</td>
+      <td>
+        <button type="button" class="btn btn-danger">DELETE  <i class="fa-solid fa-trash"></i></button> 
+      </td>
+     </tr>
+      {{/each}}
+      <tr class="table-dark">
+      <td colspan="3"style="font-weight:bold;padding-top:22px" >totalPrize :</th>
+      <td  style="font-weight:bold;padding-top:22px">{{shopCart.totalPrize}} $</td>
+      <td> <button type="button" class="btn btn-danger">DELETE ALL<br>THE CART <i class="fa-solid fa-trash"></i></button></td>
+     </tr>
+  </tbody>
+</table>
