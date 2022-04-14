@@ -148,7 +148,7 @@ router.get('/shopping-cart', (req, res, next)=>{
     shopCart = req.user.cart
     res.render('shopping-cart', {shopCart:shopCart ,  productquantity : productquantity})
    }else{
-     res.redirect('/users/signs')
+     res.redirect('/')
    }
 
 })
@@ -194,6 +194,35 @@ router.get('/decrease/:index', (req, res, next)=>{
     }
   })
   res.redirect('/shopping-cart')
+})
+
+
+router.get('/deleteindex/:index', (req,res,next)=>{
+
+ const index = req.params.index;
+ const userCart = req.user.cart;
+console.log(userCart.selcetedProdects.length)
+ if(userCart.selcetedProdects.length <= 1){
+ Cart.deleteOne({_id:userCart._id},(err,doc)=>{
+  if(err){
+    console.log(err)
+  }
+
+  res.redirect('/shopping-cart')
+ })}else{
+ userCart.totalPrize = userCart.totalPrize - userCart.selcetedProdects[index].prize;
+ userCart.totalQuantity = userCart.totalQuantity - userCart.selcetedProdects[index].Quantity;
+ userCart.selcetedProdects.splice(index,1)
+
+ Cart.updateOne({_id:userCart._id},{$set:userCart},(err,doc)=>{
+   if(err){
+     console.log
+   }
+   console.log(doc)
+   res.redirect('/shopping-cart')
+ })
+}
+
 })
 
 
