@@ -222,7 +222,7 @@ console.log(userCart.selcetedProdects.length)
    res.redirect('/shopping-cart')
  })
 }
-//test
+
 })
 
 
