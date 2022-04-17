@@ -144,6 +144,10 @@ router.get('/shopping-cart', (req, res, next)=>{
     }else{
       productquantity = 0
     }
+    if(!req.user.cart){
+      res.render('shopping-cart', {productquantity : 0 });
+      return ;
+    }
 
     shopCart = req.user.cart
     res.render('shopping-cart', {shopCart:shopCart ,  productquantity : productquantity})

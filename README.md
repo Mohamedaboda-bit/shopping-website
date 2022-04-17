@@ -23,3 +23,4 @@
 * where you can follow up your selected products
 * view each product date and the total price
 * created  increase and decrease buttons that can modify the numbers of your selected product
+#### created a delete button functin to delete you card 
