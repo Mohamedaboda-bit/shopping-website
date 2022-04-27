@@ -9,13 +9,15 @@ router.get('/', function(req, res, next) {
 
     var productquantity = null
 
-  if(req.isAuthenticated()){
-    if(req.user.cart){
+    if(req.isAuthenticated()){ 
+
+      if(req.user.cart){
     productquantity = req.user.cart.totalQuantity;
+     }
     }else{
       productquantity = 0
     }
-  }
+  
 
  /* cart.deleteMany({},(err,doc)=>{
     if(err){console.log(err)}
@@ -31,7 +33,7 @@ router.get('/', function(req, res, next) {
     prodactdata.push(doc.slice(i,i+grid))
     }
 
-    res.render('index', { title: 'testing', data:prodactdata , ifLotedOut:req.isAuthenticated() , productquantity  :productquantity} );
+    res.render('index', { title:'testing', data:prodactdata , ifLotedOut:req.isAuthenticated() , productquantity  :productquantity} );
   })
   // for delete all the data from the database (schema)
  /* schema.deleteMany({},(error,doc)=>{
@@ -150,7 +152,7 @@ router.get('/shopping-cart', (req, res, next)=>{
     }
 
     shopCart = req.user.cart
-    res.render('shopping-cart', {shopCart:shopCart ,  productquantity : productquantity})
+    res.render('shopping-cart', {ifLogedIn:true,shopCart:shopCart ,  productquantity : productquantity})
    }else{
      res.redirect('/')
    }
@@ -205,18 +207,23 @@ router.get('/deleteindex/:index', (req,res,next)=>{
 
  const index = req.params.index;
  const userCart = req.user.cart;
-console.log(userCart.selcetedProdects.length)
+
  if(userCart.selcetedProdects.length <= 1){
+
  Cart.deleteOne({_id:userCart._id},(err,doc)=>{
+
   if(err){
     console.log(err)
   }
 
   res.redirect('/shopping-cart')
+
  })}else{
+
  userCart.totalPrize = userCart.totalPrize - userCart.selcetedProdects[index].prize;
  userCart.totalQuantity = userCart.totalQuantity - userCart.selcetedProdects[index].Quantity;
  userCart.selcetedProdects.splice(index,1)
+
 
  Cart.updateOne({_id:userCart._id},{$set:userCart},(err,doc)=>{
    if(err){
@@ -227,6 +234,10 @@ console.log(userCart.selcetedProdects.length)
  })
 }
 
+})
+
+router.get('/checkOut',(req,res,next)=>{
+  res.render('checkOut',{ifLogedIn:true, productquantity : productquantity})
 })
 
 

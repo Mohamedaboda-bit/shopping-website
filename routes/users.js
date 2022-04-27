@@ -66,7 +66,7 @@ router.get('/profile' ,isSigned, (req , res , next)=>{
     productquantity = 0
   }
 
-  res.render('user/profile',{ifLotedOut:true,inProfile:true ,  productquantity : productquantity})
+  res.render('user/profile',{ifLogedIn:true,inProfile:true ,  productquantity : productquantity})
 })
 
 router.post('/sign_up',[
